@@ -1,0 +1,21 @@
+@startuml
+actor User
+participant "LedgerController" as Controller
+participant "DeleteLedgerService" as Service
+participant "LedgerRepository"
+
+alt Ledger가 존재하지 않음
+    Service -> LedgerRepository : findById(ledgerId)
+    LedgerRepository --> Service : null
+    Service --> Controller : 404 Not Found
+else 요청자와 소유자가 다름
+    Service -> LedgerRepository : findById(ledgerId)
+    LedgerRepository --> Service : ledger
+    Service --> Controller : 403 Forbidden
+else 정상 흐름
+    Service -> LedgerRepository : findById(ledgerId)
+    LedgerRepository --> Service : ledger
+    Service -> LedgerRepository : softDelete(ledger)
+    Service --> Controller : 200 OK
+end
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+actor User
+participant "LedgerController" as Controller
+participant "RegisterLedgerService" as Service
+participant "UserRepository"
+participant "CategoryRepository"
+participant "LedgerRepository"
+
+alt 사용자가 존재하지 않음
+    Service -> UserRepository : findById(userId)
+    UserRepository --> Service : null
+    Service --> Controller : 404 Not Found
+else 카테고리가 없음
+    Service -> CategoryRepository : findById(categoryId)
+    CategoryRepository --> Service : null
+    Service --> Controller : 400 Bad Request
+else 정상 흐름
+    Service -> LedgerRepository : save(ledger)
+    Service --> Controller : 200 OK
+end
+@enduml
