@@ -67,5 +67,5 @@ src/main/java/com/example/accountbook
 
 ---
 
-> 이 문서는 `/docs/STRUCTURE.md`에 위치하며, 프로젝트 구조 설계의 기준으로 사용됩니다.
+> 이 문서는 `/docs/architecture/STRUCTURE.md`에 위치하며, 프로젝트 구조 설계의 기준으로 사용됩니다.
 

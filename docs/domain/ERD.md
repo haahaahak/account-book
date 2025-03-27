@@ -1,6 +1,6 @@
 # 📊 ERD 설계 문서
 
-![ERD Diagram](./images/erd.png)
+![ERD Diagram](../images/erd.png)
 
 ## ✅ users — 사용자 테이블
 
@@ -54,5 +54,5 @@
 
 ---
 
-이 문서는 `/docs/ERD.md`에 위치하며, 프로젝트 내 설계 기준으로 사용됩니다.
+이 문서는 `/docsㅋ/ERD.md`에 위치하며, 프로젝트 내 설계 기준으로 사용됩니다.
 
