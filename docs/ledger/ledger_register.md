@@ -26,35 +26,10 @@
 
 ---
 
-## ✅ 시퀀스 다이어그램 (PlantUML 코드)
+## ✅ 시퀀스 다이어그램
 
 다음 시퀀스 다이어그램은 예외 상황까지 고려하여 설계되었습니다.
-
-```plantuml
-@startuml
-actor User
-participant "LedgerController" as Controller
-participant "RegisterLedgerService" as Service
-participant "UserRepository"
-participant "CategoryRepository"
-participant "LedgerRepository"
-
-alt 사용자가 존재하지 않음
-    Service -> UserRepository : findById(userId)
-    UserRepository --> Service : null
-    Service --> Controller : 404 Not Found
-else 카테고리가 없음
-    Service -> CategoryRepository : findById(categoryId)
-    CategoryRepository --> Service : null
-    Service --> Controller : 400 Bad Request
-else 정상 흐름
-    Service -> LedgerRepository : save(ledger)
-    Service --> Controller : 200 OK
-end
-
-@enduml
-```
-
+![ledger_register-sequence](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/haahaahak/account-book/main/docs/ledger/ledger_register-sequence.puml)
 ---
 
 ## 💡 비고
