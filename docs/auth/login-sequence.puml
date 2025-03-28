@@ -1,0 +1,23 @@
+@startuml
+actor User
+participant "AuthController" as Controller
+participant "AuthService" as Service
+participant "UserRepository"
+participant "JwtTokenProvider"
+
+User -> Controller : 로그인 요청 (email, password)
+Controller -> Service : 로그인 처리 요청
+Service -> UserRepository : findByEmail(email)
+alt 사용자가 없음
+    Service --> Controller : 404 Not Found
+else 사용자 존재함
+    Service -> Service : 비밀번호 비교
+    alt 비밀번호 불일치
+        Service --> Controller : 401 Unauthorized
+    else 인증 성공
+        Service -> JwtTokenProvider : createAccessToken(userId)
+        JwtTokenProvider --> Service : JWT
+        Service --> Controller : 200 OK + JWT
+    end
+end
+@enduml
