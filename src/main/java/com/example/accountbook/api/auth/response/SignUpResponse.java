@@ -1,6 +1,6 @@
 package com.example.accountbook.api.auth.response;
 
-public record SignupResponse(
+public record SignUpResponse(
         Long id,
         String email,
         String nickname
