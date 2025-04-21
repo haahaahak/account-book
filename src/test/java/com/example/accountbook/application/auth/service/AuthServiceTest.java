@@ -4,6 +4,7 @@ import com.example.accountbook.api.auth.request.SignUpRequest;
 import com.example.accountbook.application.auth.dto.SignUpCommand;
 import com.example.accountbook.application.auth.dto.SignUpResult;
 import com.example.accountbook.domain.user.entity.User;
+import com.example.accountbook.domain.user.exception.UserException;
 import com.example.accountbook.domain.user.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -55,6 +56,6 @@ public class AuthServiceTest {
         given(userRepository.existsByEmail(command.email())).willReturn(true);
 
         // when & then
-        assertThrows(IllegalArgumentException.class, () -> authService.signUp(command));
+        assertThrows(UserException.class, () -> authService.signUp(command));
     }
 }
